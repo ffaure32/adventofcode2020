@@ -16,7 +16,7 @@ def test_convert_line():
     assert result == 12
 
 def test_compute():
-    lines = ["1010"]
+    lines = [1010]
     result = day1.compute(lines)
     assert result == 1010*1010
 

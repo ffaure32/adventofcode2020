@@ -3,8 +3,6 @@ from utils import file_utils
 
 
 def compute(lines):
-    lines = [to_int(line) for line in lines]
-    lines.sort()
     for i in range(len(lines)):
         for j in range(i, len(lines)):
             tuple = (lines[i], lines[j])
@@ -14,8 +12,6 @@ def compute(lines):
 
 
 def compute2(lines):
-    lines = [to_int(line) for line in lines]
-    lines.sort()
     for i in range(len(lines)):
         for j in range(i, len(lines)):
             for k in range(j, len(lines)):
@@ -38,11 +34,18 @@ def to_int(int_string):
 
 
 def solution(file_name):
-    return compute(file_utils.get_lines("inputs", file_name))
+    return compute(prepare_data(file_name))
 
 
 def solution2(file_name):
-    return compute2(file_utils.get_lines("inputs", file_name))
+    return compute2(prepare_data(file_name))
+
+
+def prepare_data(file_name):
+    lines = file_utils.get_lines("inputs", file_name)
+    lines = [to_int(line) for line in lines]
+    lines.sort()
+    return lines
 
 
 if __name__ == "__main__":
