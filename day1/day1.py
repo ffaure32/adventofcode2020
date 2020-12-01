@@ -2,8 +2,9 @@ import numpy
 from utils import file_utils
 
 
-def compute(linesStr):
-    lines = [to_int(line) for line in linesStr]
+def compute(lines):
+    lines = [to_int(line) for line in lines]
+    lines.sort()
     for i in range(len(lines)):
         for j in range(i, len(lines)):
             tuple = (lines[i], lines[j])
@@ -12,8 +13,9 @@ def compute(linesStr):
     return 0
 
 
-def compute2(linesStr):
-    lines = [to_int(line) for line in linesStr]
+def compute2(lines):
+    lines = [to_int(line) for line in lines]
+    lines.sort()
     for i in range(len(lines)):
         for j in range(i, len(lines)):
             for k in range(j, len(lines)):
