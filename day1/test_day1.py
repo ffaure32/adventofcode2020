@@ -1,3 +1,5 @@
+import os
+
 import day1
 
 
@@ -19,17 +21,18 @@ def test_compute():
     assert result == 1010*1010
 
 def test_day1():
-    result = day1.solution("day1/inputs", "test_1")
+    print(os.getcwd())
+    result = day1.solution("test_1")
     assert result == 514579
 
 def test_day1_real():
-    result = day1.solution("day1/inputs", "input")
+    result = day1.solution("input")
     assert result == 270144
 
 def test_day1_part2():
-    result = day1.solution2("day1/inputs", "test_1")
+    result = day1.solution2("test_1")
     assert result == 241861950
 
 def test_day1_real_part2():
-    result = day1.solution2("day1/inputs", "input")
+    result = day1.solution2("input")
     assert result == 261342720
