@@ -1,18 +1,16 @@
-import numpy
 from utils import file_utils
 
 
 def compute(lines):
-    return real_compute(lines, lambda line: line.is_valid())
+    return count_filtered_items(lines, lambda line: line.is_valid())
 
 
 def compute2(lines):
-    return real_compute(lines, lambda line: line.is_new_valid())
+    return count_filtered_items(lines, lambda line: line.is_new_valid())
 
 
-def real_compute(lines, filter_function):
-    valid_lines = len([line for line in lines if filter_function(line)])
-    return valid_lines
+def count_filtered_items(lines, filter_function):
+    return len([line for line in lines if filter_function(line)])
 
 
 def to_int(int_string):
