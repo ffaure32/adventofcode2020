@@ -9,10 +9,6 @@ def cell_at(line, x_pos):
     return line[x_pos]
 
 
-def count_trees_on_standard_3_1_slope(map_lines):
-    return count_trees_on_slope(map_lines, (3, 1))
-
-
 def count_trees_on_slope(map_lines, slope):
     x = 0
     y = 0
@@ -28,7 +24,9 @@ def count_trees_on_slope(map_lines, slope):
 
 
 def solution(file_name):
-    return count_trees_on_standard_3_1_slope(prepare_data(file_name))
+    slope = (3, 1)
+    map_lines = prepare_data(file_name)
+    return count_trees_on_slope(map_lines, slope)
 
 
 def solution2(file_name):
