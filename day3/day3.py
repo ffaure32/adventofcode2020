@@ -13,13 +13,12 @@ def count_trees_on_slope(map_lines, slope):
     x = 0
     y = 0
     count_trees = 0
-    while y < len(map_lines)-1:
+    while y < len(map_lines)-slope[1]:
         x += slope[0]
         y += slope[1]
-        if y < len(map_lines):
-            cell = cell_at(map_lines[y], x)
-            if cell == TREE:
-                count_trees += 1
+        cell = cell_at(map_lines[y], x)
+        if cell == TREE:
+            count_trees += 1
     return count_trees
 
 
