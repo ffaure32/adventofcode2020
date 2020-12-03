@@ -1,7 +1,4 @@
-import math
-from functools import reduce
-
-from utils import file_utils
+from utils import file_utils, math_utils
 
 TREE = '#'
 
@@ -38,13 +35,11 @@ def solution2(file_name):
     steps = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
     lines = prepare_data(file_name)
     computed_steps = [compute2(lines, step) for step in steps]
-    product = reduce(lambda x, y: x * y, computed_steps)
-    return product
+    return math_utils.prod(computed_steps)
 
 
 def prepare_data(file_name):
     lines = file_utils.get_lines("inputs", file_name)
-    lines = [line.rstrip('\r\n') for line in lines]
     return lines
 
 

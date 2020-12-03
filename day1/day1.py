@@ -1,5 +1,4 @@
-import numpy
-from utils import file_utils
+from utils import file_utils, math_utils
 
 
 def compute(lines):
@@ -26,11 +25,7 @@ def check_2020(numbers):
 
 
 def multiply(numbers):
-    return numpy.prod(numbers)
-
-
-def to_int(int_string):
-    return int(int_string.rstrip('\r\n'))
+    return math_utils.prod(numbers)
 
 
 def solution(file_name):
@@ -43,7 +38,7 @@ def solution2(file_name):
 
 def prepare_data(file_name):
     lines = file_utils.get_lines("inputs", file_name)
-    lines = [to_int(line) for line in lines]
+    lines = [int(line) for line in lines]
     lines.sort()
     return lines
 

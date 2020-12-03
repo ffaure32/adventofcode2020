@@ -13,10 +13,6 @@ def count_filtered_items(lines, filter_function):
     return len([line for line in lines if filter_function(line)])
 
 
-def to_int(int_string):
-    return int(int_string.rstrip('\r\n'))
-
-
 def solution(file_name):
     return compute(prepare_data(file_name))
 
