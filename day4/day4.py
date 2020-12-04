@@ -30,28 +30,24 @@ def validate_birthyear(byr):
     return validate_number(byr, 1920, 2002)
 
 
-def validate_issueyear(byr):
-    return validate_number(byr, 2010, 2020)
+def validate_issueyear(iyr):
+    return validate_number(iyr, 2010, 2020)
 
 
-def validate_expirationyear(byr):
-    return validate_number(byr, 2020, 2030)
+def validate_expirationyear(eyr):
+    return validate_number(eyr, 2020, 2030)
 
 
-def validate_number(year, min, max):
+def validate_number(number_string, min, max):
     try:
-        year = int(year)
-        return min <= year <= max
+        return min <= int(number_string) <= max
     except ValueError:
         return False
 
 
 def validate_height(hgt):
-    hgt_cut = len(hgt) - 2
-    if hgt_cut <= 0:
-        return False
-    unit = hgt[hgt_cut:]
-    hgt_num = hgt[: hgt_cut]
+    unit = hgt[- 2:]
+    hgt_num = hgt[: - 2]
     if unit == "cm":
         return validate_number(hgt_num, 150, 193)
     elif unit == "in":
@@ -67,11 +63,11 @@ def validate_haircolor(hcr):
     return hcr_regex.search(hcr) != None
 
 
-valid_colors = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]
+valid_eye_colors = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]
 
 
 def validate_eyecolor(ecr):
-    return ecr in valid_colors
+    return ecr in valid_eye_colors
 
 
 pid_regex = re.compile('^([0-9]){9}$')
