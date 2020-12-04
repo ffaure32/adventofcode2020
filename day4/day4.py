@@ -60,11 +60,11 @@ def validate_height(hgt):
         return False
 
 
-hcr_regex = re.compile('\#([0-9]|[a-f]){6}')
+hcr_regex = re.compile('^\#([0-9]|[a-f]){6}$')
 
 
 def validate_haircolor(hcr):
-    return len(hcr) == 7 and hcr_regex.search(hcr) != None
+    return hcr_regex.search(hcr) != None
 
 
 valid_colors = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]
@@ -74,11 +74,11 @@ def validate_eyecolor(ecr):
     return ecr in valid_colors
 
 
-pid_regex = re.compile('([0-9]){9}')
+pid_regex = re.compile('^([0-9]){9}$')
 
 
 def validate_passwordid(pid):
-    return len(pid) == 9 and pid_regex.search(pid) != None
+    return pid_regex.search(pid) != None
 
 
 validators = dict()
