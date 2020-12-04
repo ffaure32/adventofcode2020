@@ -1,6 +1,10 @@
 from utils import file_utils
 import re
 
+PASSPORTS_SEPARATOR = '*'
+PASSPORTS_INFO_SEPARATOR = ' '
+JOINED_PASSPORTS_SEPARATOR = " %s " % PASSPORTS_SEPARATOR
+
 
 def solution(file_name):
     passports = prepare_data(file_name)
@@ -14,15 +18,9 @@ def solution2(file_name):
 
 def prepare_data(file_name):
     lines = file_utils.get_lines("inputs", file_name)
-    prepared_lines = list()
-    actual_string = ""
-    for line in lines:
-        if not line:
-            prepared_lines.append(actual_string)
-            actual_string = ""
-        else:
-            actual_string += " " + line
-    prepared_lines.append(actual_string)
+    lines = [line if line else PASSPORTS_SEPARATOR for line in lines]
+    joined_lines = PASSPORTS_INFO_SEPARATOR.join(lines)
+    prepared_lines = joined_lines.split(JOINED_PASSPORTS_SEPARATOR)
     return [Passport(line) for line in prepared_lines]
 
 
@@ -56,35 +54,35 @@ def validate_height(hgt):
         return False
 
 
-hcr_regex = re.compile('^\#([0-9]|[a-f]){6}$')
+HAIR_COLOR_REGEX = re.compile('^\#([0-9]|[a-f]){6}$')
 
 
 def validate_haircolor(hcr):
-    return hcr_regex.search(hcr) != None
+    return HAIR_COLOR_REGEX.search(hcr) != None
 
 
-valid_eye_colors = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]
+VALID_EYES_COLORS = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]
 
 
 def validate_eyecolor(ecr):
-    return ecr in valid_eye_colors
+    return ecr in VALID_EYES_COLORS
 
 
-pid_regex = re.compile('^([0-9]){9}$')
+VALID_PASSWORD_REGEX = re.compile('^([0-9]){9}$')
 
 
 def validate_passwordid(pid):
-    return pid_regex.search(pid) != None
+    return VALID_PASSWORD_REGEX.search(pid) != None
 
 
-validators = dict()
-validators["byr"] = validate_birthyear
-validators["iyr"] = validate_issueyear
-validators["eyr"] = validate_expirationyear
-validators["hgt"] = validate_height
-validators["hcl"] = validate_haircolor
-validators["ecl"] = validate_eyecolor
-validators["pid"] = validate_passwordid
+PASSPORT_VALIDATORS = dict()
+PASSPORT_VALIDATORS["byr"] = validate_birthyear
+PASSPORT_VALIDATORS["iyr"] = validate_issueyear
+PASSPORT_VALIDATORS["eyr"] = validate_expirationyear
+PASSPORT_VALIDATORS["hgt"] = validate_height
+PASSPORT_VALIDATORS["hcl"] = validate_haircolor
+PASSPORT_VALIDATORS["ecl"] = validate_eyecolor
+PASSPORT_VALIDATORS["pid"] = validate_passwordid
 
 
 class Passport:
@@ -103,8 +101,8 @@ class Passport:
         return self.is_valid() and self.validate_data()
 
     def validate_data(self):
-        for key in validators:
-            if not validators[key](self.passport_info[key]):
+        for key in PASSPORT_VALIDATORS:
+            if not PASSPORT_VALIDATORS[key](self.passport_info[key]):
                 return False
         return True
 
