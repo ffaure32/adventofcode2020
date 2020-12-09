@@ -16,16 +16,14 @@ def test_find_first_weakness():
 
 def test_day9_real():
     result = day9.solution("input", 25)
-    assert 127 == result
+    assert 1639024365 == result
 
 
 def test_day9_part2():
-    result = day9.solution2("test_1")
-    pass
-    # assert result == 32
+    result = day9.solution2("test_1", 127)
+    assert result == 62
 
 
 def test_day9_real_part2():
-    result = day9.solution2("input")
-    pass
-    # assert result == 421550
+    result = day9.solution2("input", 1639024365)
+    assert result == 219202240

@@ -31,6 +31,16 @@ def solution(file_name, preamble_size):
     return find_first_weakness(prepared_data, preamble_size)
 
 
-def solution2(file_name):
+def solution2(file_name, sum_to_find):
     prepared_data = prepare_data(file_name)
-    return len(prepared_data)
+    index = prepared_data.index(sum_to_find)
+    removed_tail = prepared_data[:index]
+    for i in range(index, 0, -1):
+        current_sum = 0
+        j = i-1
+        while current_sum < sum_to_find:
+            current_sum += removed_tail[j]
+            j -= 1
+        if current_sum == sum_to_find:
+            contiguous_range = removed_tail[j + 1:i]
+            return min(contiguous_range)+max(contiguous_range)
