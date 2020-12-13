@@ -19,10 +19,14 @@ def solution(file_name):
 
 def solution2(file_name):
     ids_with_gaps = prepare_data2(file_name)
+    return calculate_with_chinese_remainder(ids_with_gaps)
 
+
+def calculate_with_chinese_remainder(ids_with_gaps):
     bus_ids = ids_with_gaps.keys()
     produit_total = math_utils.prod(bus_ids)
-    e_a_s = [calculate_prod_e_a(calculate_e(bus_id, produit_total), ids_with_gaps, bus_id) for bus_id in bus_ids]
+    e_a_s = [calculate_prod_e_a(calculate_e(bus_id, produit_total), ids_with_gaps, bus_id) for
+             bus_id in bus_ids]
     return sum(e_a_s) % produit_total
 
 
@@ -39,10 +43,14 @@ def calculate_e(ni, produit_total):
 
 def prepare_data2(file_name):
     lines = file_utils.get_lines("inputs", file_name)
-    bus_ids = lines[1].split(',')
+    bus_ids = lines[1]
+    return build_gaps_by_bus_id(bus_ids)
+
+
+def build_gaps_by_bus_id(bus_ids):
     gap = 0
     ids_with_gaps = dict()
-    for id in bus_ids:
+    for id in bus_ids.split(','):
         if id != 'x':
             ids_with_gaps[int(id)] = int(id) - gap
         gap += 1
