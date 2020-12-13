@@ -36,7 +36,7 @@ def calculate_prod_e_a(ei, ids_with_gaps, bus_line):
 
 def calculate_e(ni, produit_total):
     nic = produit_total // ni
-    vi = math_utils.euclid(ni, nic)[1]
+    vi = math_utils.euclid_extended_calc(ni, nic)[1]
     ei = vi * nic
     return ei
 

@@ -13,25 +13,13 @@ def pgcd(a, b):
         return pgcd(b, r)
 
 
-def gcdExtended(a, b):
-    # Base Case
-    if a == 0:
-        return b, 0, 1
-
-    gcd, x1, y1 = gcdExtended(b % a, a)
-
-    # Update x and y using results of recursive
-    # call
-    x = y1 - (b // a) * x1
-    y = x1
-
-    return gcd, x, y
+# https://fr.wikipedia.org/wiki/Algorithme_d%27Euclide_%C3%A9tendu
+def euclid_extended_calc(a, b):
+    return recursive_euclid_method(a, 1, 0, b, 0, 1)[1:]
 
 
-def eucl(r, u, v, rp, up, vp):
+def recursive_euclid_method(r, u, v, rp, up, vp):
     if rp == 0:
         return (r, u, v)
-    return eucl(rp, up, vp, r-(r//rp)*rp, u-(r//rp)*up, v-(r//rp)*vp)
-
-def euclid(a,b):
-    return eucl(a, 1, 0, b, 0, 1)[1:]
+    q = (r // rp)
+    return recursive_euclid_method(rp, up, vp, r - q * rp, u - q * up, v - q * vp)

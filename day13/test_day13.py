@@ -44,9 +44,9 @@ def test_sol2_real():
 
 
 def test_euclid():
-    assert 2 == math_utils.euclid(3, 35)[1] % 3
-    assert 1 == math_utils.euclid(5, 21)[1] % 5
-    assert 1 == math_utils.euclid(7, 15)[1] % 7
+    assert 2 == math_utils.euclid_extended_calc(3, 35)[1] % 3
+    assert 1 == math_utils.euclid_extended_calc(5, 21)[1] % 5
+    assert 1 == math_utils.euclid_extended_calc(7, 15)[1] % 7
 
 
 def test_calcul_e():
