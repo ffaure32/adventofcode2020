@@ -52,24 +52,34 @@ def find_valid_values_for_field(field, values_per_index):
 def solution2(input):
     parsed = prepare_data(input)
     valid_tickets = parsed.remove_errors()
-    num_values = len(parsed.your_ticket.values)
+    num_values = len(parsed.fields)
+    values_per_index = group_ticket_values_by_index(num_values, valid_tickets)
+
+    valid_index_by_field = get_valid_index_by_field(parsed, values_per_index)
+    return math_utils.prod([parsed.your_ticket.values[i] for i in dict(filter(lambda field: field[1].startswith('departure'), valid_index_by_field.items())).keys()])
+
+
+def group_ticket_values_by_index(num_values, valid_tickets):
     values_per_index = [list() for i in range(num_values)]
-    result = dict()
     for valid_ticket in valid_tickets:
         for i in range(num_values):
             values_per_index[i].append(valid_ticket.values[i])
+    return values_per_index
 
+
+def get_valid_index_by_field(parsed, values_per_index):
     fields = parsed.fields
+    valid_index_by_field = dict()
     while len(fields) > 0:
         for i in range(len(parsed.fields)):
             valid_indexes = find_valid_values_for_field(fields[i], values_per_index)
             if len(valid_indexes) == 1:
                 found_index = valid_indexes[0]
-                result[found_index] = fields[i].name
+                valid_index_by_field[found_index] = fields[i].name
                 del fields[i]
                 values_per_index[found_index] = [-1]
                 break
-    return math_utils.prod([parsed.your_ticket.values[i] for i in dict(filter(lambda elem: elem[1].startswith('departure'), result.items())).keys()])
+    return valid_index_by_field
 
 
 # departure location: 36-269 or 275-973
