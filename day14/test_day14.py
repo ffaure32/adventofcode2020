@@ -30,7 +30,7 @@ def test_solution():
 
 
 def test_solution_real():
-    assert 11501064782628 == day14.solution("input")
+    assert 11501064782628 == day14.solution("inputs")
 
 
 def test_calculate_masks():
@@ -43,4 +43,4 @@ def test_solution2():
 
 
 def test_solution2_real():
-    assert 5142195937660 == day14.solution2("input")
+    assert 5142195937660 == day14.solution2("inputs")

@@ -7,7 +7,7 @@ def test_print():
 
 
 def test_print_real():
-    assert 4938 == day13.solution('input')
+    assert 4938 == day13.solution('inputs')
 
 
 def test_sol2():
@@ -40,7 +40,7 @@ def test_sample5():
 
 
 def test_sol2_real():
-    assert 230903629977901 == day13.solution2('input')
+    assert 230903629977901 == day13.solution2('inputs')
 
 
 def test_euclid():

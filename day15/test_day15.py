@@ -15,4 +15,4 @@ def test_solution_real():
     #assert 175594 == day15.solution2([0,3,6])
 
 def test_solution2_real():
-    assert 240 == day15.solution2([14,8,16,0,1,17])
+    assert 505 == day15.solution2([14,8,16,0,1,17])

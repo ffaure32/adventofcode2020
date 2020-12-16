@@ -56,7 +56,7 @@ def test_day8():
 
 
 def test_day8_real():
-    result = day8.solution('input')
+    result = day8.solution('inputs')
     assert result == 1928
 
 
@@ -71,5 +71,5 @@ def test_day8_part2():
 
 
 def test_day8_part2_real():
-    result = day8.solution2('input')
+    result = day8.solution2('inputs')
     assert result == 1319

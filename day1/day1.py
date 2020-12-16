@@ -44,5 +44,5 @@ def prepare_data(file_name):
 
 
 if __name__ == "__main__":
-    print(solution("input"))
-    print(solution2("input"))
+    print(solution("inputs"))
+    print(solution2("inputs"))

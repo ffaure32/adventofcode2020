@@ -6,21 +6,19 @@ def solution(input):
 
 def solution_real(input, turns):
     last_index = dict()
-    spoken_numbers = list()
     for i in range(len(input)):
-        spoken_numbers.append(input[i])
         last_index[input[i]] = list()
         last_index[input[i]].append(i)
+    last_spoken = input[len(input)-1]
 
     for i in range(len(input),turns):
-        spoken_number = spoken_numbers[i-1]
         next_spread = 0
-        if spoken_number in last_index:
-            last_times_spoken = last_index[spoken_number]
+        if last_spoken in last_index:
+            last_times_spoken = last_index[last_spoken]
             if len(last_times_spoken)>1:
                 next_spread = last_times_spoken[-1]-last_times_spoken[-2]
         if next_spread not in last_index:
             last_index[next_spread] = list()
         last_index[next_spread].append(i)
-        spoken_numbers.append(next_spread)
-    return spoken_numbers[-1]
+        last_spoken = next_spread
+    return last_spoken

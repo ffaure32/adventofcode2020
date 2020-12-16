@@ -44,10 +44,10 @@ def test_day5():
 
 
 def test_day5_real():
-    result = day5.solution("input")
+    result = day5.solution("inputs")
     assert result == 928
 
 
 def test_day5_part2_real():
-    result = day5.solution2("input")
+    result = day5.solution2("inputs")
     assert result == 610
