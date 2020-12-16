@@ -20,7 +20,7 @@ def test_solution():
 
 
 def test_solution_real():
-    result = day12.solution("inputs")
+    result = day12.solution("input")
     assert result == 508
 
 
@@ -34,5 +34,5 @@ def test_solution22():
 
 
 def test_solution2_real():
-    result = day12.solution2("inputs")
+    result = day12.solution2("input")
     assert result == 30761

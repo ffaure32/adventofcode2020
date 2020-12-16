@@ -7,7 +7,7 @@ JOINED_ANSWERS_SEPARATOR = " %s " % ANSWERS_SEPARATOR
 
 
 def prepare_data(file_name):
-    lines = file_utils.get_lines("inputs", file_name)
+    lines = file_utils.get_lines(file_name)
     lines = [line if line else ANSWERS_SEPARATOR for line in lines]
     joined = ANSWERS_INFO_SEPARATOR.join(lines)
     lines = joined.split(JOINED_ANSWERS_SEPARATOR)

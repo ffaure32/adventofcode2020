@@ -34,7 +34,7 @@ def test_parse_all_rules():
 
 
 def test_parse_all_real_rules():
-    rules = day7.prepare_data("inputs")
+    rules = day7.prepare_data("input")
     assert len(rules) == 1473
 
 
@@ -49,7 +49,7 @@ def test_day7():
     assert result == 4
 
 def test_day7_real():
-    result = day7.solution("inputs")
+    result = day7.solution("input")
     assert result == 233
 
 def test_day7_part2():
@@ -57,5 +57,5 @@ def test_day7_part2():
     assert result == 32
 
 def test_day7_real_part2():
-    result = day7.solution2("inputs")
+    result = day7.solution2("input")
     assert result == 421550

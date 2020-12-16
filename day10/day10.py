@@ -3,7 +3,7 @@ from utils import math_utils
 
 
 def prepare_data(file_name):
-    lines = file_utils.get_lines("inputs", file_name)
+    lines = file_utils.get_lines(file_name)
     lines = [int(line) for line in lines]
     lines.sort()
     lines.insert(0, 0)

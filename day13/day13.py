@@ -2,7 +2,7 @@ from utils import file_utils, math_utils
 
 
 def prepare_data(file_name):
-    lines = file_utils.get_lines("inputs", file_name)
+    lines = file_utils.get_lines(file_name)
     earliest = int(lines[0])
     bus_ids = lines[1].split(',')
     bus_ids = list(filter(lambda x: x != 'x', bus_ids))
@@ -42,7 +42,7 @@ def calculate_e(ni, produit_total):
 
 
 def prepare_data2(file_name):
-    lines = file_utils.get_lines("inputs", file_name)
+    lines = file_utils.get_lines(file_name)
     bus_ids = lines[1]
     return build_gaps_by_bus_id(bus_ids)
 

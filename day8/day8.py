@@ -12,7 +12,7 @@ def prepare_data(file_name):
 
 
 def prepare_lines(file_name):
-    lines = file_utils.get_lines("inputs", file_name)
+    lines = file_utils.get_lines(file_name)
     lines = [parse_line(line) for line in lines]
     return lines
 

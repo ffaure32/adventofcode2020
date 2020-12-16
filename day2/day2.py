@@ -22,7 +22,7 @@ def solution2(file_name):
 
 
 def prepare_data(file_name):
-    lines = file_utils.get_lines("inputs", file_name)
+    lines = file_utils.get_lines(file_name)
     lines = [PasswordInfo(line) for line in lines]
     return lines
 
@@ -47,5 +47,5 @@ class PasswordInfo:
 
 
 if __name__ == "__main__":
-    print(solution("inputs"))
-    print(solution2("inputs"))
+    print(solution("input"))
+    print(solution2("input"))

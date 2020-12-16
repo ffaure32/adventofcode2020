@@ -26,7 +26,7 @@ def test_day1():
 
 
 def test_day1_real():
-    result = day1.solution("inputs")
+    result = day1.solution("input")
     assert result == 270144
 
 
@@ -36,5 +36,5 @@ def test_day1_part2():
 
 
 def test_day1_real_part2():
-    result = day1.solution2("inputs")
+    result = day1.solution2("input")
     assert result == 261342720

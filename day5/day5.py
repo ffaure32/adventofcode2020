@@ -40,7 +40,7 @@ def split(coords, up):
 
 
 def prepare_data(file_name):
-    lines = file_utils.get_lines("inputs", file_name)
+    lines = file_utils.get_lines(file_name)
     return [SeatRange(line).seat_id() for line in lines]
 
 

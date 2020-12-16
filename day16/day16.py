@@ -6,7 +6,7 @@ def prepare_data(file_name):
     fields = list()
     your_ticket = None
     other_tickets = list()
-    lines = file_utils.get_lines("inputs", file_name)
+    lines = file_utils.get_lines(file_name)
     preparing_fields = True
     parsing_ticket = False
     for line in lines:

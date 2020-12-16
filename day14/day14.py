@@ -35,7 +35,7 @@ def change_output_v2(bin_value, i, mask, output):
 
 
 def prepare_data(file_name):
-    lines = file_utils.get_lines("inputs", file_name)
+    lines = file_utils.get_lines(file_name)
     return lines
 
 

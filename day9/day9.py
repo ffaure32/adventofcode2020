@@ -21,7 +21,7 @@ def find_first_weakness(input_data, preamble_size):
 
 
 def prepare_data(file_name):
-    lines = file_utils.get_lines("inputs", file_name)
+    lines = file_utils.get_lines(file_name)
     return [int(line) for line in lines]
 
 

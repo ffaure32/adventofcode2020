@@ -21,7 +21,7 @@ def parse_rule(rule_string):
 
 
 def prepare_data(file_name):
-    lines = file_utils.get_lines("inputs", file_name)
+    lines = file_utils.get_lines(file_name)
     rules = set()
     for line in lines:
         rules.update(parse_rule(line))

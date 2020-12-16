@@ -36,10 +36,10 @@ def solution2(file_name):
 
 
 def prepare_data(file_name):
-    lines = file_utils.get_lines("inputs", file_name)
+    lines = file_utils.get_lines(file_name)
     return lines
 
 
 if __name__ == "__main__":
-    print(solution("inputs"))
-    print(solution2("inputs"))
+    print(solution("input"))
+    print(solution2("input"))

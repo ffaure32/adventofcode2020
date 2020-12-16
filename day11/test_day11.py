@@ -38,7 +38,7 @@ def test_solution():
 
 
 def test_solution_real():
-    assert 2453 == day11.solution("inputs")
+    assert 2453 == day11.solution("input")
 
 
 def test_solution2():
@@ -46,4 +46,4 @@ def test_solution2():
 
 
 def test_solution2_real():
-    assert 2159 == day11.solution2("inputs")
+    assert 2159 == day11.solution2("input")

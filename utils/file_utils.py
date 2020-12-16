@@ -2,8 +2,8 @@ import os
 from pathlib import Path
 
 
-def get_lines(path, file_name):
-    data_folder = Path(path)
+def get_lines(file_name):
+    data_folder = Path("inputs")
     print (os.getcwd())
     file_path = data_folder / file_name
     print (file_path)

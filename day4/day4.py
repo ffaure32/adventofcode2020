@@ -17,7 +17,7 @@ def solution2(file_name):
 
 
 def prepare_data(file_name):
-    lines = file_utils.get_lines("inputs", file_name)
+    lines = file_utils.get_lines(file_name)
     lines = [line if line else PASSPORTS_SEPARATOR for line in lines]
     joined_lines = PASSPORTS_INFO_SEPARATOR.join(lines)
     prepared_lines = joined_lines.split(JOINED_PASSPORTS_SEPARATOR)
@@ -108,5 +108,5 @@ class Passport:
 
 
 if __name__ == "__main__":
-    print(solution("inputs"))
-    print(solution2("inputs"))
+    print(solution("input"))
+    print(solution2("input"))

@@ -3,7 +3,7 @@ import math
 
 
 def prepare_data(file_name):
-    return file_utils.get_lines("inputs", file_name)
+    return file_utils.get_lines(file_name)
 
 
 def solution(file_name):
