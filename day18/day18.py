@@ -2,7 +2,7 @@ import re
 
 from utils import file_utils
 
-range_regex = re.compile(r"(\d*) (\W) (\d*)(.*)")
+range_regex = re.compile(r"(\d* \W \d*)(.*)")
 
 
 def calculate_left_to_right(operation):
@@ -12,17 +12,27 @@ def calculate_left_to_right(operation):
         if not match:
             return int(operation)
         groups = match.groups()
-        left = int(groups[0])
-        right = int(groups[2])
-        op = groups[1]
-        if op == '+':
-            result = left + right
-        else:
-            result = left * right
-        if groups[3]:
-            operation = str(result) + groups[3]
+        op = groups[0]
+        result = calculate_2_operands(op)
+        if groups[1]:
+            operation = str(result) + groups[1]
         else:
             return result
+
+
+simple_regex = re.compile(r"(\d*) (\W) (\d*)")
+
+
+def calculate_2_operands(operation):
+    match = simple_regex.match(operation)
+    groups = match.groups()
+    left = int(groups[0])
+    right = int(groups[2])
+    op = groups[1]
+    if op == '+':
+        return left + right
+    else:
+        return left * right
 
 
 def calculate_inverse_precedence(operation):
@@ -39,7 +49,7 @@ def calculate_inverse_precedence(operation):
             prev_op = operators[index_of_operation - 1] + 2
         if index_of_operation < len(operators) - 1:
             next_op = operators[index_of_operation + 1]
-        result = calculate_left_to_right(operation[prev_op:next_op - 1])
+        result = calculate_2_operands(operation[prev_op:next_op - 1])
         operation = operation[:prev_op] + str(result) + operation[next_op - 1:]
     return calculate_left_to_right(operation)
 
@@ -65,7 +75,8 @@ def calculate_with_parenthesis_and_operator(operation, calculator):
 
 def solution(file_name):
     operations = file_utils.get_lines(file_name)
-    return sum([calculate_left_to_right(calculate_with_parenthesis_and_operator(operation, calculate_left_to_right)) for operation in operations])
+    return sum([calculate_left_to_right(calculate_with_parenthesis_and_operator(operation, calculate_left_to_right)) for
+                operation in operations])
 
 
 def solution2(file_name):
@@ -100,7 +111,8 @@ def test_input():
     assert 13 == calculate_left_to_right(calculate_with_parenthesis('2 + (4 + 3) + 4'))
     assert 26 == calculate_left_to_right(calculate_with_parenthesis('2 * 3 + (4 * 5)'))
     assert 437 == calculate_left_to_right(calculate_with_parenthesis('5 + (8 * 3 + 9 + 3 * 4 * 3)'))
-    assert 13632 == calculate_left_to_right(calculate_with_parenthesis('((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2'))
+    assert 13632 == calculate_left_to_right(
+        calculate_with_parenthesis('((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2'))
 
 
 def test_input2():
