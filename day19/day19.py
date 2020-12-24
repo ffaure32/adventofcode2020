@@ -33,7 +33,7 @@ def convert_to_indexes(rule):
     return ints
 
 
-def prepare_data(file_name):
+def prepare_data(file_name, regex_generator):
     rules = dict()
     lines = file_utils.get_lines(file_name)
     to_validate_count = 0
@@ -42,7 +42,7 @@ def prepare_data(file_name):
         if not line:
             parse_regex = False
             first_rule = rules[0]
-            raw_regex = first_rule.replace_children(rules).replace(' ', '')
+            raw_regex = regex_generator(rules).replace(' ', '')
             raw_regex = '^'+raw_regex+'$'
             regex = re.compile(raw_regex)
         elif parse_regex:
@@ -53,6 +53,22 @@ def prepare_data(file_name):
             if matched:
                 to_validate_count += 1
     return to_validate_count
+
+
+def first_rule_part1(rules):
+    first_rule = rules[0]
+    return first_rule.replace_children(rules)
+
+
+def first_rule_part2(rules):
+    rule_42 = rules[42].replace_children(rules)
+    rule_31 = rules[31].replace_children(rules)
+    rule_8 = "(?:"+rule_42+"+)"
+    rule_11 = "(?:("+rule_42+rule_31+"|"+rule_42+"(?-1)"+rule_31+"))"
+    raw_regex = "^(?:"+rule_8+rule_11+")$"
+    print(raw_regex)
+    return raw_regex
+
 
 
 class Rule:
@@ -111,5 +127,11 @@ def test_regex_groups_with_pipe_and_pairs():
 
 
 def test_prepare_data():
-    count = prepare_data('input')
+    count = prepare_data('input', first_rule_part1)
     assert 107 == count
+
+
+def test_prepare_data_part2():
+    count = prepare_data('input', first_rule_part2)
+    print(count)
+    assert 12 == count
