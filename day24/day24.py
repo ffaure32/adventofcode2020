@@ -16,9 +16,20 @@ def navigate(direction, coords):
         return (coords[0] - 1, coords[1] + 1)
 
 
+def all_moves(coords):
+    all_moves = set()
+    all_moves.add((coords[0] + 2, coords[1]))
+    all_moves.add((coords[0] - 2, coords[1]))
+    all_moves.add((coords[0] + 1, coords[1] - 1))
+    all_moves.add((coords[0] - 1, coords[1] - 1))
+    all_moves.add((coords[0] + 1, coords[1] + 1))
+    all_moves.add((coords[0] - 1, coords[1] + 1))
+    return all_moves
+
+
 def parse_line(line):
     moves = list()
-    keep =''
+    keep = ''
     for move in line:
         if move in ('s', 'n'):
             keep = move
@@ -51,6 +62,67 @@ def prepare_data(file_name):
 def solution(file_name):
     flipped = prepare_data(file_name)
     return len(flipped)
+
+
+def one_cell(tiles, tile, was_black):
+    blacks = 0
+    whites = 0
+    for other_tile in all_moves(tile):
+        if other_tile in tiles:
+            blacks += 1
+        else:
+            whites += 1
+    if was_black:
+        if blacks == 0 or blacks > 2:
+            return True
+    else:
+        if blacks == 2:
+            return True
+    return False
+
+
+def maxes(flipped):
+    minx, miny, maxx, maxy = 0, 0, 0, 0
+    for flip in flipped:
+        minx = min(minx, flip[0])
+        maxx = max(maxx, flip[0])
+        miny = min(miny, flip[1])
+        maxy = max(maxy, flip[1])
+        minxy = min(minx, miny) - 1
+        maxxy = max(maxx, maxy) + 1
+    return minxy, maxxy
+
+
+def solution2(file_name):
+    flipped = prepare_data(file_name)
+    for i in range(100):
+        flipped = one_turn(flipped)
+    return flipped
+
+
+def one_turn(flipped):
+    new_flipped = set()
+    minxy, maxxy = maxes(flipped)
+    for y in range(minxy, maxxy + 1):
+        if y % 2 != minxy % 2:
+            minx = minxy - 1
+            maxx = maxxy + 1
+        else:
+            minx = minxy
+            maxx = maxxy
+        for x in range(minx, maxx + 1, 2):
+            in_flipped = (x, y) in flipped
+            changed = one_cell(flipped, (x, y), in_flipped)
+            if changed and not in_flipped:
+                new_flipped.add((x, y))
+            if not changed and in_flipped:
+                new_flipped.add((x, y))
+    return new_flipped
+
+
+def test_solution2():
+    new_matrix = solution2('input')
+    assert 3933 == len(new_matrix)
 
 
 def test_solution():
