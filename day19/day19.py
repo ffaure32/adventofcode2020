@@ -41,9 +41,9 @@ def prepare_data(file_name, regex_generator):
     for line in lines:
         if not line:
             parse_regex = False
-            first_rule = rules[0]
             raw_regex = regex_generator(rules).replace(' ', '')
             raw_regex = '^'+raw_regex+'$'
+            print(raw_regex)
             regex = re.compile(raw_regex)
         elif parse_regex:
             rule = parse_line(line)
@@ -60,13 +60,19 @@ def first_rule_part1(rules):
     return first_rule.replace_children(rules)
 
 
+def generate_pseudo_recursive_rule11(rule_42, rule_31):
+    n_rules = list()
+    for i in range(1, 10):
+        n_rules.append('(?:(?:'+rule_42+'){'+str(i)+'}(?:'+rule_31+'){'+str(i)+'})')
+    return '|'.join(n_rules)
+
+
 def first_rule_part2(rules):
     rule_42 = rules[42].replace_children(rules)
     rule_31 = rules[31].replace_children(rules)
-    rule_8 = "(?:"+rule_42+"+)"
-    rule_11 = "(?:("+rule_42+rule_31+"|"+rule_42+"(?-1)"+rule_31+"))"
-    raw_regex = "^(?:"+rule_8+rule_11+")$"
-    print(raw_regex)
+    rule_8 = '(?:'+rule_42+')+'
+    rule_11 = '(?:'+generate_pseudo_recursive_rule11(rule_42, rule_31)+')+'
+    raw_regex = rule_8+rule_11
     return raw_regex
 
 
@@ -134,4 +140,4 @@ def test_prepare_data():
 def test_prepare_data_part2():
     count = prepare_data('input', first_rule_part2)
     print(count)
-    assert 12 == count
+    assert 321 == count
