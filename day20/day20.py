@@ -266,4 +266,4 @@ def test_solution():
 def test_solution2():
     result = solution2('input')
     print(result)
-    assert 51214443014783 == result
+    assert 2065 == result
